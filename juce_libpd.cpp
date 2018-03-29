@@ -16,7 +16,7 @@
 #include "juce_libpd.h"
 
 //==============================================================================
-#ifdef _MSC_VER
+#ifdef JUCE_MSVC
  #pragma warning (push)
  #pragma warning (disable: 4091 4100 4996 )
 #endif
@@ -31,6 +31,44 @@
     #pragma GCC diagnostic push
     #pragma GCC diagnostic ignored "-Wunused-variable"
     #pragma GCC diagnostic ignored "-Wunused-parameter"
+#endif
+
+//==============================================================================
+#define PD 1
+#define USEAPI_DUMMY 1
+#define PD_INTERNAL 1
+
+#if JUCE_LIBPD_EXTRA
+#define LIBPD_EXTRA 1
+#endif
+
+#if JUCE_LIBPD_MULTI
+#define PDINSTANCE 1
+#define PDTHREADS 1
+#endif
+
+#if PD_LOCALE == 0
+#define LIBPD_NO_NUMERIC 1
+#endif
+
+#if JUCE_WINDOWS
+#define WINVER 0x502
+#define WIN32 1
+#define _WIN32 1
+
+#if JUCE_64BIT
+#define PD_LONGINTTYPE long long
+#endif
+
+#if JUCE_MSVC
+#define HAVE_STRUCT_TIMESPEC 1
+#define _CRT_SECURE_NO_WARNINGS 1
+#endif
+
+#elif JUCE_MAC || JUCE_LINUX
+#define HAVE_LIBDL 1
+#define HAVE_UNISTD_H 1
+
 #endif
 
 //==============================================================================

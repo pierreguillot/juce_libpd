@@ -35,7 +35,7 @@
 #define JUCE_LIBPD_H_INCLUDED
 
 //==============================================================================
-#ifdef _MSC_VER
+#ifdef JUCE_MSVC
  #pragma warning (push)
  #pragma warning (disable: 4091 4100 4996 )
 #endif
@@ -81,8 +81,6 @@
 #ifndef JUCE_LIBPD_LOCAL
  #define JUCE_LIBPD_LOCAL 1
 #endif
-
-//==============================================================================
 
 //==============================================================================
 #if JUCE_MSVC
